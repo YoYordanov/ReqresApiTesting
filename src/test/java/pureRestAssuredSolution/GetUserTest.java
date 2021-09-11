@@ -1,14 +1,5 @@
 package pureRestAssuredSolution;
-
-import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.junit.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 
