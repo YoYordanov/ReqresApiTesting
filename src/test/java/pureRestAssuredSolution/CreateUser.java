@@ -15,6 +15,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CreateUser extends TestConfig{
 
+    /*
+    Example for test driven development using rest assured BDD stile.
+
+    Test driven because the the server is most probably deleting the created user and the test cannot proceed after that.
+     */
     @Test
     public void createUserTest() throws IOException {
 
@@ -32,7 +37,7 @@ public class CreateUser extends TestConfig{
             .body()
             .extract();
 
-        JsonPath responseJsonPath = new JsonPath(response.getBody().asString());//.asString()).setRoot("data");
+        JsonPath responseJsonPath = new JsonPath(response.getBody().asString());
         String userId = responseJsonPath.getString("id");
 
         JsonPath requestJsonPath = new JsonPath(userJson);
@@ -49,7 +54,7 @@ public class CreateUser extends TestConfig{
             .body()
         .and()
             .body("name", equalTo(expectedName))
-            .body("gender", equalTo(expectedJob));
+            .body("job", equalTo(expectedJob));
 
         //Delete the created user
         given()
