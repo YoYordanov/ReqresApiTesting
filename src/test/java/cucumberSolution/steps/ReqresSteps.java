@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
+import org.junit.Assert;
 import utilities.ApiUtil;
 
 import java.io.IOException;
@@ -30,7 +31,8 @@ public class ReqresSteps{
 
     @Then("Assert status code is {int}")
     public void assertStatusCodeIs(int statusCode) {
-        assert response.statusCode() == statusCode;
+        //assert response.statusCode() == statusCode;
+        Assert.assertEquals(response.statusCode(), statusCode);
     }
 
     @When("Create user with name {string} and job {string} by calling {string}")
@@ -45,8 +47,8 @@ public class ReqresSteps{
 
     @And("Assert {string} and {string} are returned in body of the response")
     public void assertAndAreReturnedInBodyOfTheResponse(String userName, String userJob) {
-        assert response.getBody().jsonPath().get("name") == userName;
-        assert response.getBody().jsonPath().get("job") == userJob;
+        Assert.assertEquals(response.getBody().jsonPath().get("name"), userName);
+        Assert.assertEquals(response.getBody().jsonPath().get("job"), userJob);
     }
 
     @When("Hit {string} with the returned userid")
@@ -66,8 +68,8 @@ public class ReqresSteps{
 
     @And("Assert {string} and {string} fields are not null")
     public void assertAndFieldsAreNotNull(String idField, String tokenField) {
-        assert response.getBody().jsonPath().get(idField) != null;
-        assert response.getBody().jsonPath().get(tokenField) != null;
+        Assert.assertNotNull(response.getBody().jsonPath().get(idField));
+        Assert.assertNotNull(response.getBody().jsonPath().get(tokenField));
     }
 
 
@@ -81,7 +83,7 @@ public class ReqresSteps{
 
     @And("Assert {string} {string} is returned")
     public void assertIsReturned(String key, String value) {
-        assert response.getBody().jsonPath().get(key) != value;
+        Assert.assertEquals(response.getBody().jsonPath().get(key), value);
     }
 
     @When("Login with email {string} and password {string} by calling {string}")
