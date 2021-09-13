@@ -13,7 +13,7 @@ Scenario: Create user successfully
 
 Scenario: Register user successfully
   Given Setup base url and path
-  When Register user with email "TestUser@email.com" and password "password" by calling "/register"
+  When Register user with email "eve.holt@reqres.in" and password "pistol" by calling "/register"
   Then Assert status code is 200
   And Assert "id" and "token" fields are not null
 

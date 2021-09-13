@@ -11,6 +11,7 @@ import java.io.IOException;
 public class TestConfig {
 
     public static String users;
+    public static String register;
 
     @Before
     public void setup() throws IOException {
@@ -19,5 +20,6 @@ public class TestConfig {
         RestAssured.defaultParser = Parser.JSON;
 
         users = "/api/users";
+        register = "/api/register";
     }
 }

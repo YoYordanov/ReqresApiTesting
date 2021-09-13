@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.messages.internal.com.google.gson.JsonObject;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
@@ -64,7 +65,7 @@ public class ReqresSteps{
         registerUserJson.put("password", password);
 
         response = ApiUtils.post(url, registerUserJson);
-        userId =  response.getBody().jsonPath().get("id");
+        userId =  response.getBody().jsonPath().get("id").toString();
     }
 
     @And("Assert {string} and {string} fields are not null")
@@ -84,7 +85,7 @@ public class ReqresSteps{
 
     @And("Assert {string} {string} is returned")
     public void assertIsReturned(String key, String value) {
-        Assert.assertEquals(response.getBody().jsonPath().get(key), value);
+        Assert.assertEquals(value, response.getBody().jsonPath().get(key).toString());
     }
 
     @When("Login with email {string} and password {string} by calling {string}")

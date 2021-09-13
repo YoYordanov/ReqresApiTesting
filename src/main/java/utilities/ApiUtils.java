@@ -1,5 +1,6 @@
 package utilities;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 
@@ -15,11 +16,11 @@ public class ApiUtils {
     }
 
     public static Response post(String url, HashMap<String, String> userJson) {
-        return given().body(userJson).post(url).then().using().extract().response();
+        return given().contentType(ContentType.JSON).body(userJson).post(url).then().using().extract().response();
     }
 
     public static ResponseOptions<Response> putWithPathParam(String url, String userId, HashMap<String, String> userJson) {
-        return given().body(userJson).put(url.concat("/").concat(userId)).then().using().extract().response();
+        return given().contentType(ContentType.JSON).body(userJson).put(url.concat("/").concat(userId)).then().log().body().using().extract().response();
     }
 
     public static ResponseOptions<Response> getWithQueryParam(String url, String key, String value) {
