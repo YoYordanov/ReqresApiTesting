@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class CreateUser extends TestConfig{
+public class RegisterUserTest extends TestConfig{
 
     @Test
     public void registerUserTest() throws IOException {

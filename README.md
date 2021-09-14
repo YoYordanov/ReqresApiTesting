@@ -11,7 +11,7 @@ Install the following plugins as they must be enabled in the specified order:
 
 ## Run tests
 
-Import the project into IntelliJ and run the test from the feature file here:
+Import the project into IntelliJ and run the test from the files here:
 - Reqres.feature
 - CreateUser.java
 - GetUserTest.java
