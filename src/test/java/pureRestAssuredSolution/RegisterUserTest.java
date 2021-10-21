@@ -1,5 +1,7 @@
 package pureRestAssuredSolution;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.cucumber.messages.internal.com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -17,7 +19,10 @@ public class RegisterUserTest extends TestConfig{
     @Test
     public void registerUserTest() throws IOException {
 
-        String userJson = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "/src/test/resources/testUser.json")));
+        User user = new User("eve.holt@reqres.in", "pistol");
+
+        Gson gson = new Gson();
+        String userJson = gson.toJson(user);
 
         // Register new user
         Response response = (Response) given()
